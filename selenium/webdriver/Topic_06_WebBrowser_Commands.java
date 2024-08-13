@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.lang.model.element.Element;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +23,11 @@ public class Topic_06_WebBrowser_Commands {
 
 
         driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        // time to wait element
+        // version 3
+//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        // Version 4
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
 
     }
@@ -36,6 +41,7 @@ public class Topic_06_WebBrowser_Commands {
         driver.quit();
         WebElement emailAddress= driver.findElement(By.id("email"));
         List <WebElement> checkBoxes=driver.findElements(By.xpath("//input[@type='checkbox']"));
+        checkBoxes.get(1).click();
 
     }
     @AfterClass
